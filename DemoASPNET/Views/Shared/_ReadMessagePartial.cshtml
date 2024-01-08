@@ -1,0 +1,19 @@
+﻿<form>
+    <br />
+    <tr>
+        <td>@Model.Id</td>
+        <td>@Model.Emetteur</td>
+        <td>@Model.Contenu</td>
+        <td>@Model.Date</td>
+
+    </tr><br />
+    <tr>
+        <td>
+            <button asp-action="UpdateMessage" asp-route-Id="@Model.Id">Update</button>
+        </td>
+    </tr>
+    <br />
+    <td>
+        <button asp-action="DeleteMessage" asp-route-Id="@Model.Id">Delete</button>
+    </td>
+</form>

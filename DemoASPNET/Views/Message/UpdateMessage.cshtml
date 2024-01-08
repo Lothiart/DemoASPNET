@@ -1,0 +1,17 @@
+﻿@model DemoASPNET.Models.Message
+
+<h1>Update Message</h1>
+<form asp-action="UpdateMessage">
+    <br />
+    <div>
+        <label asp-for="Emetteur"></label>
+        <input asp-for="Emetteur" />
+    </div>
+    <br />
+    <div>
+        <label asp-for="Contenu"></label>
+        <input asp-for="Contenu" />
+    </div>
+    <br />
+    <button>Valider</button>
+</form>

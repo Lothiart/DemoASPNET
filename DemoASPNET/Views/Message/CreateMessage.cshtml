@@ -1,0 +1,18 @@
+﻿@model DemoASPNET.Models.Message
+
+<h1>Formulaire Create</h1>
+<form asp-action="CreateMessage">
+    <br />
+<div>
+    <label asp-for="Emetteur"></label>
+    <input asp-for="Emetteur" />
+</div>
+<br />
+    <div>
+        <label asp-for="Contenu"></label>
+        <input asp-for="Contenu" />
+    </div>
+    <br />
+    <button>Valider</button>
+</form>
+

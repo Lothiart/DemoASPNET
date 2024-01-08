@@ -1,0 +1,24 @@
+﻿@inject IRandomService RandomService
+
+
+
+<br/>
+
+
+<table>
+    <tr>
+    <td>
+            @await Component.InvokeAsync("RandomBetween", new { Min = 1, Max = 100 })
+        </td>
+
+        <td><vc:random-between min="10" max="20"></vc:random-between></td>
+
+
+        <td>random = @RandomService.GetRandom()</td>
+
+
+    </tr>
+   
+</table>
+
+

@@ -1,0 +1,15 @@
+﻿@{
+    ViewData["Title"] = "Test";
+    ViewBag.Test = "oui";
+    TempData["Test"] = "non";
+}
+<h1>@ViewData["Title"]</h1>
+
+<p>Bing Chilling.</p>
+
+@ViewBag.Test
+@TempData["Test"]
+@ViewBag.TestKey
+@TempData["TestKey"]
+
+

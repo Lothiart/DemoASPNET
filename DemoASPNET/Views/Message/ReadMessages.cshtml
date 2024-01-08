@@ -1,0 +1,36 @@
+﻿@model IEnumerable<Message>
+
+
+<h1>Liste des Messages</h1>
+<form >
+<table class="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Emetteur</th>
+            <th>Contenu</th>
+            <th>Date</th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var message in Model)
+{
+
+    @* Code sans shared views:*@
+    @* <tr>
+                <td>@message.Id</td>
+                <td>@message.Emetteur</td>
+                <td>@message.Contenu</td>
+                <td>@message.Date</td>
+                <td><button asp-action="ReadMessage" asp-route-Id="@message.Id">Detail</button></td>
+    </tr> *@
+
+
+
+    @* Shared views *@
+    @Html.Partial("_ReadMessagePartial",message)
+    }
+
+    </tbody>
+</table>
+</form>
