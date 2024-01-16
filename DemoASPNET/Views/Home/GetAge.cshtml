@@ -1,0 +1,65 @@
+﻿<script>
+
+    function createNode(element) {
+        return document.createElement(element);
+    }
+
+    function append(parent, el) {
+        return parent.appendChild(el);
+    }
+
+    const ul = document.getElementsByName('name');
+    const url = 'https://api.agify.io/?name=michael';
+
+    fetch(url)
+        .then((resp) => resp.json())
+        .then(function (data) {
+            let name = data.results;
+            return name.map(function (name) {
+                let li = createNode('li');
+                
+                let span = createNode('span');
+                
+                span.innerHTML = `${name.name.first} ${name.name.last}`;
+               
+                append(li, span);
+                append(ul, li);
+            })
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
+    // }
+
+    const url = 'https://api.agify.io/?name=michael';
+
+    let data = {
+        name: 'Sara'
+    }
+
+    var request = new Request(url, {
+        method: 'POST',
+        body: data,
+        headers: new Headers()
+    });
+
+    fetch(request)
+        .then(function () {
+            // Handle response we get from the API
+        })
+</script>
+
+
+<h1>Age</h1>
+<form>
+    <table class="table">
+        
+
+
+        <h1>Name</h1>
+        <ul id="name"></ul>
+        
+           
+        <button onClick="createNode (michael);"></button>
+    </table>
+</form>

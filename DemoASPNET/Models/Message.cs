@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel.DataAnnotations;
 
 namespace DemoASPNET.Models
 {
@@ -8,9 +9,9 @@ namespace DemoASPNET.Models
         public int Id { get; set; }
 
         [Required]
-        
+        [Remote("Unique?","Message",ErrorMessage ="Error : emetteur inexistant")]
         public string Emetteur { get; set; }
-        [StringLength(20)]
+        [StringLength(20,ErrorMessage ="Max 20 caractères")]
         public string Contenu { get; set; }
 
         public DateTime Date { get; set; }

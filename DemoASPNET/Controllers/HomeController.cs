@@ -14,7 +14,12 @@ namespace DemoASPNET.Controllers
             _logger = logger;
         }
 
+        public IActionResult GetAge()
+        {
+           
+            return View();
 
+        }
         public IActionResult Random()
         {
             return View();

@@ -6,14 +6,11 @@
         <td>@Model.Contenu</td>
         <td>@Model.Date</td>
 
-    </tr><br />
-    <tr>
+    
         <td>
             <button asp-action="UpdateMessage" asp-route-Id="@Model.Id">Update</button>
+        
+        <button asp-action="DeleteMessage" asp-route-Id="@Model.Id">Delete</button>
         </td>
     </tr>
-    <br />
-    <td>
-        <button asp-action="DeleteMessage" asp-route-Id="@Model.Id">Delete</button>
-    </td>
 </form>

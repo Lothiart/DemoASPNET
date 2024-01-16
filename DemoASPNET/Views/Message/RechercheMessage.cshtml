@@ -1,0 +1,65 @@
+﻿@model IEnumerable<Message>
+
+
+<h1>Liste des Messages</h1>
+
+<form asp-action="RechercheMessage" id="formSearch">
+    <a>Recherche par l'Emetteur :</a>
+    <br />
+
+    <input type="text" name="name" id="searchName" placeholder="Nom..." value="" />
+    <button>Rechercher</button>
+</form>
+<table class="table">
+<div id="divCo">
+    @Html.Partial("_ReadMessagesPartial", Model)
+    </div>
+</table>
+
+<script>
+
+    $(function () {
+        $('#formSearch').submit(function (e) {
+            $post('/Message/Recherche', { name : $('#searchName').val()}, function (data) {
+
+                $('#divCo').html(data);
+                     alert('Horray! Someone wrote "' + this.value + '"!');
+
+            });
+        e.preventDefault();
+    });
+
+
+
+    });
+   
+
+
+
+
+        
+    /* Event listener */
+    // document.getElementsByName("Emetteur")[0].addEventListener('input', Recherche);
+
+    //  // Function 
+    // $(function Recherche() {
+    //     // $.get("/Message/Recherche", function (data) {
+
+    
+       
+
+    //     // $('#Emetteur') {
+    //     $.post('/Message/Recherche', { name: $('#Search').val() }, function (data) {
+    //         $('#divco').html(data);
+    //     })
+
+    //     e.preventDefault();
+    // });
+                
+    // }
+    </script>
+
+  
+   
+    
+ 

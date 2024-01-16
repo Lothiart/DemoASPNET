@@ -14,6 +14,7 @@ namespace DemoASPNET.Controllers
             new Message(){Id=1, Emetteur="A", Contenu="C"},
             new Message(){Id=2, Emetteur="B",Contenu="C"}
         };
+        //static List<Message> MessRech;
         private readonly ILogger<HomeController> _logger;
         public MessageController(ILogger<HomeController> logger)
         {
@@ -32,19 +33,24 @@ namespace DemoASPNET.Controllers
             return RedirectToAction("CreateMessage");
         }
 
-        //public IActionResult CreateMessageContrainte()
-        //{
-        //    return View();
-        //}
-        //public ActionResult CreateMessageContrainte(Message message)
-        //{
+        public IActionResult CreateMessageContrainte()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult CreateMessageContrainte(Message message)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(message);
+
+            }
+            message.Id = Messages.Max(m => m.Id) + 1;
             
-        //    message.Id = Messages.Max(m => m.Id) + 1;
-        //    Messages.FirstOrDefault(m => m.Id == message.Id).Emetteur = message.Emetteur;
-        //    message.Date = DateTime.Now;
-        //    Messages.Add(message);
-        //    return RedirectToAction("CreateMessageContrainte");
-        //}
+            message.Date = DateTime.Now;
+            Messages.Add(message);
+            return RedirectToAction("CreateMessageContrainte");
+        }
 
         [HttpGet]
         public ActionResult ReadMessage(int id)
@@ -75,6 +81,43 @@ namespace DemoASPNET.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+        [HttpPost]
+        public async Task<IActionResult> SearchAjax(string emetteur)
+        {
+            var messages = Messages.Find(m => m.Emetteur == emetteur);
+
+            return PartialView("_displayMessages", messages);
+            //return RedirectToRoute("Detail/" + pet.Id);
+        }
+        public ActionResult RechercheMessage()
+        {
+            return View(Messages);
+        }
+        public ActionResult Recherche(string emetteur)
+        {
+
+            //foreach (Message mess in Messages)
+            //{
+            //    if (mess.Emetteur.Contains(emetteur))
+            //    {
+            //        MessRech.Add(mess);
+            //    }
+
+            //}
+            var MessRech = (emetteur == null) ? Messages : Messages.Where(item => item.Emetteur.Contains(emetteur)).ToList();   
+
+
+           return PartialView("_ReadMessagesPartial", MessRech);
+        }
+        public ActionResult IsUnique(string emetteur) {
+            bool res = false;
+            var mes = Messages.FirstOrDefault(e=>e.Emetteur==emetteur);
+            if (mes == null)
+            {
+                res = true;
+            }
+            return Json(mes);
         }
     }
 }
